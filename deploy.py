@@ -29,7 +29,7 @@ INSTRUCTIONS = Resource(
 )
 AGENTS = Resource(
     path=Path("./agents"),
-    pattern="**/AGENT.md",
+    pattern="**/**.md",
     type="agents"
 )
 
