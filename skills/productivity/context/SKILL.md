@@ -1,18 +1,18 @@
 ---
 name: context
 description: >
-  Create a condensed session summary that captures all essential conversation points so future sessions can pick up seamlessly. Trigger with `/context`. This skill automatically distills the current conversation to its most critical information—goals, decisions, code changes, findings, next steps—then asks if any important details should be added before finalizing the context file. Do NOT trigger for general summarization tasks or one-off conversation reviews; this is specifically for preserving continuity between sessions. Do NOT trigger if the conversation is just starting or is trivial.
+  Create a condensed session summary that captures all essential conversation points so future sessions can pick up seamlessly. Trigger with `/context`. This skill automatically distills the current conversation to its most critical information—goals, decisions, code changes, findings, next steps—and IMMEDIATELY saves it to a markdown file without confirmation. Do NOT trigger for general summarization tasks or one-off conversation reviews; this is specifically for preserving continuity between sessions. Do NOT trigger if the conversation is just starting or is trivial.
 ---
 
 ## Purpose
 
 This skill captures the essential context from your current conversation session and condenses it 
-into a focused markdown summary that you can read in future sessions to quickly understand what 
-happened and what comes next. Instead of scrolling through full conversation logs, you get a tight 
-summary of goals, decisions, code changes, blockers, and next steps — everything your future self 
-needs to know to seamlessly continue working without re-reading everything. The summary is saved 
-as a markdown file in your current working directory, keeping your context tokens lean while 
-preserving continuity between sessions.
+into a focused markdown summary that is saved automatically as soon as the summary is ready. Instead 
+of scrolling through full conversation logs, you get a tight summary of goals, decisions, code 
+changes, blockers, and next steps — everything your future self needs to know to seamlessly 
+continue working without re-reading everything. The summary is automatically saved as a markdown 
+file in your current working directory with no additional steps required, keeping your context 
+tokens lean while preserving continuity between sessions.
 
 ## Core Workflow
 
@@ -37,27 +37,17 @@ Create a markdown summary that captures ONLY the must-know information. Omit:
 
 Keep sentences short and scannable. Use bullet points and headers to organize.
 
-### Step 3: Ask for Missing Context and Confirm
-Present the condensed summary to the user and ask:
-> "I've condensed the conversation. Is there any important information that should be added to this 
-> context file that would help you pick up in the next session?"
+### Step 3: Automatically Save the File
+Immediately save the condensed markdown file to the current working directory with a timestamped 
+filename in the format: `session-context-YYYY-MM-DD-HH-MM-SS.md` 
+(e.g., `session-context-2026-05-20-14-35-22.md`). Include a header with the timestamp and a brief 
+session summary. Do NOT ask for confirmation — save automatically.
 
-Wait for their response. If they provide additions:
-1. Integrate the new information into the summary
-2. Display the revised summary to the user
-3. Ask: "Does this look good now, or any other changes?"
-4. Once confirmed, proceed to Step 4 (Save the File)
-
-If they say no additions are needed, proceed directly to Step 4.
-
-### Step 4: Save the File
-Save the final markdown file to the current working directory with a timestamped filename in the 
-format: `session-context-YYYY-MM-DD-HH-MM-SS.md` (e.g., `session-context-2026-05-20-14-35-22.md`). 
-Include a header with the timestamp and a brief session summary.
-
-### Step 5: Confirm Location
-Tell the user explicitly where the file was saved:
-> "Context saved to `./session-context-2026-05-20-14-35-22.md`"
+### Step 4: Confirm Location and Show Summary
+Tell the user explicitly where the file was saved and display the summary that was saved:
+> "✓ Context saved to `./session-context-2026-05-20-14-35-22.md`"
+> 
+> Display the full summary content so the user can see what was captured.
 
 ## Rules & Constraints
 
@@ -75,8 +65,9 @@ Tell the user explicitly where the file was saved:
 3. **Scan the Full Conversation**: Always read through the entire conversation history, not just 
    recent messages. Context from early in the session matters.
 
-4. **Ask Before Saving**: Before saving the final file, ask the user if any important information 
-   is missing. Do not assume you've captured everything.
+4. **No Confirmation Needed — Auto-Save**: Save the file immediately after condensing, without 
+   asking the user for approval. Display the summary to the user after saving so they can see what 
+   was captured.
 
 5. **Timestamp Every File**: Always include the current timestamp in the filename. Never overwrite 
    an existing session context file.
