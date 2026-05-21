@@ -198,6 +198,34 @@ Practice by: [Concrete action: "Build a function library", "Write 5 small functi
 ✓ **Acknowledge the difficulty curve** — Warn about genuinely hard topics and suggest ways to tackle them  
 ✓ **Don't orphan users mid-learning** — Suggest when to take breaks, start building, and iterate
 
+## Edge Cases
+
+### Edge Case 1: Project is too massive (10+ concept clusters needed)
+**Problem:** User's idea is so large it would require learning 40+ hours of prerequisites.
+**Solution:** Help them prioritize ruthlessly. "This is huge. Let's focus on the 2-3 core components first. Which is most important to you? We can expand to other areas as you build."
+
+### Edge Case 2: Project requires learning a new programming language
+**Problem:** User wants to build in a language they've never used.
+**Solution:** Include language fundamentals as Phase 1, before domain-specific concepts. "Learning Rust itself will take 10-15 hours. Let's front-load that, then move to the domain concepts specific to your project."
+
+### Edge Case 3: User already knows some prerequisites but not others
+**Problem:** User has partial domain knowledge and wants to skip parts.
+**Solution:** Let them guide it. "You mentioned you already know [X]. I won't include that in the learning path. Here's what's new or important for this specific project."
+
+### Edge Case 4: Project depends on understanding a very niche domain
+**Problem:** User needs to learn about something with limited online resources.
+**Solution:** Be honest. "This domain is specialized. The best learning path is [book/paper/course], but it's not online. Alternative: start building with [simpler approach] and learn domain specifics as you iterate."
+
+### Edge Case 5: User doesn't want structured learning; they just want to start building
+**Problem:** User asks for learning path but then says "Actually, just let me try building first."
+**Solution:** Validate their approach. "That's fine — learn by building is totally valid. When you hit a blocker, come back and we'll tackle that concept. Want me to flag the top 3 concepts to watch out for?"
+
+### Edge Case 6: The project concept is too vague or unfeasible
+**Problem:** User brings an idea that's unclear or doesn't make technical sense.
+**Solution:** Help clarify before decomposing. "Before I map prerequisites, let's nail down what you actually want to build. Can you describe the end goal in 1-2 sentences? What problem does it solve?"
+
+---
+
 ## Example Walkthrough
 
 **Project idea**: "I want to build an OSU beatmap AI generator"

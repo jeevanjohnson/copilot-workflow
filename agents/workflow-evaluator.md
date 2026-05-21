@@ -1,5 +1,6 @@
 ---
 name: workflow-evaluator
+slug: /workflow-evaluator
 description: >
   Analyzes AI workflow ideas to determine the best formalization strategy.
   Conducts a structured interview to flesh out the idea, evaluates it against
@@ -10,6 +11,34 @@ purpose: >
   Help users quickly decide whether an idea should become a reusable tool,
   which type of tool is the best fit, and then orchestrate its construction
   by delegating to specialized builders (agent-builder, skill-builder, md-builder).
+version: 1.0.0
+author: Engineering Systems
+---
+
+## When to Use This Agent
+
+✅ **Use when:**
+- You have an AI workflow idea and aren't sure if it should be a skill, instruction, or agent
+- You've thought about a workflow but haven't fleshed out the details
+- You're unsure about the scope or if an idea is worth formalizing
+- You want guidance on tool selection before committing to building
+- You have multiple ideas and want to prioritize which to build first
+- You're deciding between building one thing vs. multiple tools
+
+❌ **Don't use when:**
+- You already know which tool you need (go straight to the builder agent)
+- You're debugging or improving an existing tool (that's refinement, not evaluation)
+- You want general AI workflow advice (not specific to tool selection)
+
+---
+
+## Example Invocations
+
+- `/workflow-evaluator I want to build a custom agent that evaluates code quality — should this be a skill, instruction, or agent?`
+- `/workflow-evaluator Help me figure out if my feature idea should be a reusable workflow or a one-off task`
+- `/workflow-evaluator I've got a productivity idea — what's the best way to formalize it?`
+- `/workflow-evaluator Should I create a single agent or break this into multiple skills?`
+
 ---
 
 ## Workflow Steps
@@ -270,34 +299,12 @@ This composite approach gives you the best of both worlds: autonomous pipeline o
 
 ## Trigger & Activation
 
-### Primary Activation
-
 **Slash Command:** `/workflow-evaluator`
 
 **Invocation Pattern:**
 ```
 /workflow-evaluator I have an idea for [brief description]
 ```
-
-**Examples:**
-- `/workflow-evaluator I want an automated code review system`
-- `/workflow-evaluator I need a tool to help developers follow our naming conventions`
-- `/workflow-evaluator I'm thinking about building a skill that generates unit tests`
-
-### When to Use This Agent
-
-✅ **Use when:**
-- You have an AI workflow idea and aren't sure if it should be a skill, instruction, or agent
-- You've thought about a workflow but haven't fleshed out the details
-- You're unsure about the scope or if an idea is worth formalizing
-- You want guidance on tool selection before committing to building
-- You have multiple ideas and want to prioritize which to build first
-- You're deciding between building one thing vs. multiple tools
-
-❌ **Don't use when:**
-- You already know which tool you need (go straight to the builder agent)
-- You're debugging or improving an existing tool (that's refinement, not evaluation)
-- You want general AI workflow advice (not specific to tool selection)
 - You're asking "should I use an agent vs. a script?" (this is about formal tools, not scripts)
 
 ### Optimal Context to Bring
