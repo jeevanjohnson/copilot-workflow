@@ -7,6 +7,8 @@ import shutil
 # allows for subfolders in this repo of skills and instructions for better
 # organization, but then we change it so it fits copilot's file structure
 
+INCLUDE_DEPRECATED = False
+
 
 @dataclass
 class Resource:
@@ -33,7 +35,7 @@ AGENTS = Resource(
 
 
 def get_copilot_folder() -> str:
-    assert len(sys.argv) == 2, \
+    assert len(sys.argv) >= 2, \
         "Please provide the path to the copilot folder as an argument"
     dest = sys.argv[1]
 
@@ -44,6 +46,12 @@ def get_copilot_folder() -> str:
 
 
 def build_copilot_path(local_folder: Path, type: str) -> None:
+    if not INCLUDE_DEPRECATED:
+        if "deprecated" in local_folder.parts:
+            return
+    else:
+        print(f"Including deprecated {type} at {local_folder}")
+
     folder_parts = local_folder.parts[
         local_folder.parts.index(type) + 1:
     ]
@@ -61,7 +69,15 @@ def build_copilot_path(local_folder: Path, type: str) -> None:
     )
 
 
+def include_deprecated() -> bool:
+    if len(sys.argv) == 3:
+        return sys.argv[2].lower() == "--include-deprecated"
+
+    return False
+
+
 if __name__ == "__main__":
+    INCLUDE_DEPRECATED = include_deprecated()
     copilot_folder = get_copilot_folder()
 
     if os.path.exists("./copilot"):
